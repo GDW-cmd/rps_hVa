@@ -1,5 +1,8 @@
 import random
 import time
+
+#There are people watching me
+
 is_running = True
 while True:
     while True:

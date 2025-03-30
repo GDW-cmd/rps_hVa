@@ -1,19 +1,24 @@
 import random
 import time
 
-#There are people watching me
+input_check = True
+run_game = True
+
+def get_human_input():
+    is_running = True
+    while is_running:
+        human_input = input("Enter rock, paper, or scissors: ").lower()
+        if human_input in ['rock', 'paper', 'scissors']:
+            return human_input
+        else:
+            print("Entered the wrong input, please enter rock, paper, or scissors: ")
+
 
 is_running = True
-while True:
-    while True:
-        human_input = input("Enter rock, paper, or scissors: ")
-        if human_input != 'rock' and human_input != 'scissors' and human_input != 'paper':
-            print("Wrong Input")
-            human_input = input("Please enter rock, paper, or scissors: ")
-        else:
-            break
-    time.sleep(1)        
-    computer_input = random.randint(1,3)
+
+while is_running:
+    human_input = get_human_input()
+    computer_input = random.randint(1, 3)
 
     if computer_input == 1:
         computer_input = 'scissors'
@@ -22,19 +27,15 @@ while True:
     else:
         computer_input = 'paper'
 
-    if human_input == computer_input:
-        print(f"Its a Tie! Player and Computer chose {computer_input}")
-    
+    if computer_input == human_input:
+        print(f"It's a Tie! Player and Computer chose {computer_input}")
+
     elif (human_input == 'rock' and computer_input == 'scissors') or \
          (human_input == 'scissors' and computer_input == 'paper') or \
          (human_input == 'paper' and computer_input == 'rock'):
         print(f"You win! Player chose {human_input} and Computer chose {computer_input}")
-        break
+        is_running = False
+
     else:
         print(f"You lose! Player chose {human_input} and Computer chose {computer_input}")
-        break
-    
-
-
-
-
+        is_running = False
